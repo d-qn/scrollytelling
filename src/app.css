@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: theme('colors.lt-bg');
+    color: theme('colors.lt-text');
+    font-family: theme('fontFamily.sans');
+    margin: 0;
+}
