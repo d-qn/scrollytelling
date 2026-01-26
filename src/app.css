@@ -8,3 +8,7 @@ body {
     font-family: theme('fontFamily.sans');
     margin: 0;
 }
+
+h2 {
+    @apply text-xl md:text-2xl font-medium mt-2 mb-3 text-lt-main-blue tracking-tight;
+}

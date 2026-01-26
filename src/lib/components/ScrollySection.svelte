@@ -82,9 +82,9 @@
 						<div
 							class="
                  w-[90%] md:w-[80%] max-w-lg
-                 bg-white/90 backdrop-blur-sm
+                 bg-white/60 backdrop-blur-md
                  shadow-sm border border-lt-border rounded-sm
-                 p-6 text-lg font-light leading-relaxed text-lt-text
+                 p-4 text-lg font-light leading-relaxed text-lt-text
                  transition-opacity duration-500
                  {index === i ? 'opacity-100' : 'opacity-40'}
                "
