@@ -2,6 +2,7 @@
 	import Scroller from '@sveltejs/svelte-scroller';
 	import type { StoryStep } from '$lib/types';
 	import VizContainer from './VizContainer.svelte';
+	import DatawrapperChart from './DatawrapperChart.svelte';
 
 	export let steps: StoryStep[] = [];
 	export let format: 'standalone' | 'embed' = 'standalone';
@@ -13,6 +14,15 @@
 
 	// Reactive derived value for the current step
 	$: currentStep = steps[index] || steps[0];
+
+	// Extract unique Datawrapper Chart IDs to preload
+	$: uniqueDwCharts = [
+		...new Set(
+			steps
+				.filter((s) => s.vizType === 'datawrapper' && s.vizProps.chartId)
+				.map((s) => s.vizProps.chartId as string)
+		)
+	];
 </script>
 
 <svelte:window bind:innerWidth={width} />
@@ -20,20 +30,37 @@
 <div class="relative w-full">
 	<Scroller top={0} bottom={0} bind:index bind:offset bind:progress>
 		<div slot="background" class="h-screen w-full">
-			<!-- 
-          Mobile (<768px): fixed inset-0, z-0.
-          Desktop (>=768px): absolute right-0 top-0 w-[60%] h-full. (Handled via container classes or sticky logic?)
-          Svelte Scroller 'background' slot is usually fixed/sticky by the library. 
-          We use CSS to position the inner content.
-       -->
 			<div
 				class="absolute inset-0 {format === 'embed'
 					? ''
-					: 'md:left-auto md:right-0 md:w-[60%]'} h-full bg-lt-bg transition-all duration-300"
+					: 'md:left-auto md:right-0 md:w-[60%]'} h-full bg-lt-bg transition-all duration-300 relative overflow-hidden"
 			>
-				<!-- The Visualization Engine -->
-				{#if currentStep}
-					<VizContainer step={currentStep} />
+				<!-- 1. Datawrapper Layer (Preloaded Stack) -->
+				{#each uniqueDwCharts as chartId (chartId)}
+					<div
+						class="absolute inset-0 w-full h-full transition-opacity duration-500"
+						class:opacity-100={currentStep.vizType === 'datawrapper' &&
+							currentStep.vizProps.chartId === chartId}
+						class:opacity-0={currentStep.vizProps.chartId !== chartId}
+						class:pointer-events-none={currentStep.vizProps.chartId !== chartId}
+						class:z-10={currentStep.vizType === 'datawrapper' &&
+							currentStep.vizProps.chartId === chartId}
+					>
+						<!-- Pass current state ONLY if this chart is active (to trigger postMessage updates) -->
+						<DatawrapperChart
+							{chartId}
+							vizState={currentStep.vizProps.chartId === chartId
+								? currentStep.vizProps.state
+								: undefined}
+						/>
+					</div>
+				{/each}
+
+				<!-- 2. Other Visualizations (Custom, Image) -->
+				{#if currentStep && currentStep.vizType !== 'datawrapper'}
+					<div class="absolute inset-0 w-full h-full z-20">
+						<VizContainer step={currentStep} />
+					</div>
 				{/if}
 			</div>
 		</div>
@@ -42,12 +69,7 @@
 			slot="foreground"
 			class="relative z-10 w-full {format === 'embed' ? '' : 'md:w-[40%]'} pointer-events-none"
 		>
-			<!-- 
-         Mobile: Full width, overlapping.
-         Desktop: Left column.
-       -->
 			<div class="pb-[50vh]">
-				<!-- Spacer -->
 				{#each steps as step, i}
 					<section
 						class="
@@ -57,7 +79,6 @@
                 pointer-events-auto
             "
 					>
-						<!-- Text Box -->
 						<div
 							class="
                  w-[90%] md:w-[80%] max-w-lg
