@@ -12,7 +12,7 @@
           If chartId is same but vizState changes, DatawrapperChart handles it.
      -->
 		{#key step.vizProps.chartId}
-			<DatawrapperChart chartId={step.vizProps.chartId} vizState={step.vizProps.state} />
+			<DatawrapperChart chartId={step.vizProps.chartId} />
 		{/key}
 	{:else if step.vizType === 'custom'}
 		<div class="w-full h-full flex items-center justify-center text-theme-primary font-medium">

@@ -1,6 +1,4 @@
-export interface VizState {
-    [key: string]: any;
-}
+
 
 export interface StoryStep {
     content: string; // HTML string or text
@@ -9,7 +7,7 @@ export interface StoryStep {
         chartId?: string; // For Datawrapper
         component?: string; // For custom components mapping
         src?: string; // For images
-        state?: VizState; // For interactivity (postMessage etc)
+        src?: string; // For images
         [key: string]: any;
     };
 }

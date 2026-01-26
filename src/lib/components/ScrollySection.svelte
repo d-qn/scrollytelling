@@ -47,12 +47,7 @@
 							currentStep.vizProps.chartId === chartId}
 					>
 						<!-- Pass current state ONLY if this chart is active (to trigger postMessage updates) -->
-						<DatawrapperChart
-							{chartId}
-							vizState={currentStep.vizProps.chartId === chartId
-								? currentStep.vizProps.state
-								: undefined}
-						/>
+						<DatawrapperChart {chartId} />
 					</div>
 				{/each}
 
