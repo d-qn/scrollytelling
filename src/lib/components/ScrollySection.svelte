@@ -27,9 +27,9 @@
           We use CSS to position the inner content.
        -->
 			<div
-				class="absolute inset-0 md:left-auto md:right-0 {format === 'embed'
-					? 'w-full'
-					: 'md:w-[60%]'} h-full bg-lt-bg transition-all duration-300"
+				class="absolute inset-0 {format === 'embed'
+					? ''
+					: 'md:left-auto md:right-0 md:w-[60%]'} h-full bg-lt-bg transition-all duration-300"
 			>
 				<!-- The Visualization Engine -->
 				{#if currentStep}
@@ -38,7 +38,10 @@
 			</div>
 		</div>
 
-		<div slot="foreground" class="relative z-10 w-full md:w-[40%] pointer-events-none">
+		<div
+			slot="foreground"
+			class="relative z-10 w-full {format === 'embed' ? '' : 'md:w-[40%]'} pointer-events-none"
+		>
 			<!-- 
          Mobile: Full width, overlapping.
          Desktop: Left column.
@@ -50,7 +53,7 @@
 						class="
                 min-h-screen
                 flex items-center justify-center
-                md:justify-start md:pl-8
+                {format === 'embed' ? '' : 'md:justify-start md:pl-8'}
                 pointer-events-auto
             "
 					>
