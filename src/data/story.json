@@ -1,12 +1,23 @@
 {
-    "title": "La montée des eaux",
+    "format": "embed",
+    "title": "Scrollytelling Boilerplate - Le Temps",
     "intro": "Une exploration visuelle des changements climatiques en Suisse.",
     "steps": [
         {
             "content": "<h2>Introduction</h2><p class='mt-2'>La température moyenne a augmenté de <strong>2 degrés</strong> depuis 1864, un rythme deux fois plus rapide que la moyenne mondiale.</p>",
             "vizType": "datawrapper",
             "vizProps": {
-                "chartId": "H7Xy2",
+                "chartId": "Bkb1W",
+                "state": {
+                    "highlight": "1990"
+                }
+            }
+        },
+        {
+            "content": "<h2>L'impact sur les glaciers</h2><p class='mt-2'>Les glaciers reculent visiblement. Observez la différence entre 1900 et 2020 sur cette image satellite.</p>",
+            "vizType": "datawrapper",
+            "vizProps": {
+                "chartId": "WUAV8",
                 "state": {
                     "highlight": "1990"
                 }

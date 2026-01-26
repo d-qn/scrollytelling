@@ -4,6 +4,7 @@
 	import VizContainer from './VizContainer.svelte';
 
 	export let steps: StoryStep[] = [];
+	export let format: 'standalone' | 'embed' = 'standalone';
 
 	let index = 0;
 	let offset = 0;
@@ -26,7 +27,9 @@
           We use CSS to position the inner content.
        -->
 			<div
-				class="absolute inset-0 md:left-auto md:right-0 md:w-[60%] h-full bg-lt-bg transition-all duration-300"
+				class="absolute inset-0 md:left-auto md:right-0 {format === 'embed'
+					? 'w-full'
+					: 'md:w-[60%]'} h-full bg-lt-bg transition-all duration-300"
 			>
 				<!-- The Visualization Engine -->
 				{#if currentStep}

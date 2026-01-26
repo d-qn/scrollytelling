@@ -15,6 +15,7 @@ export interface StoryStep {
 }
 
 export interface StoryData {
+    format?: 'standalone' | 'embed'; // Default to standalone
     title: string;
     intro: string;
     steps: StoryStep[];
