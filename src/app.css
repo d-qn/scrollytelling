@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 body {
-    background-color: theme('colors.lt-bg');
-    color: theme('colors.lt-text');
+    background-color: theme('colors.theme-bg');
+    color: theme('colors.theme-text');
     font-family: theme('fontFamily.sans');
     margin: 0;
 }
 
 h2 {
-    @apply text-xl md:text-2xl font-medium mt-2 mb-3 text-lt-main-blue tracking-tight;
+    @apply text-xl md:text-2xl font-medium mt-2 mb-3 text-theme-primary tracking-tight;
 }

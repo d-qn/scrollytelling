@@ -4,14 +4,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        'lt-bg': '#ebebeb',
-        'lt-water': '#a8b9c7',
-        'lt-green': '#e1e6c8',
-        'lt-border': '#b4b4b4',
-        'lt-text': '#000000',
-        'lt-subtext': '#595959',
-        'lt-main-blue': '#005578',
-        'lt-div-red': '#ab4b48',
+        'theme-bg': '#ebebeb',
+        'theme-water': '#a8b9c7',
+        'theme-green': '#e1e6c8',
+        'theme-border': '#b4b4b4',
+        'theme-text': '#000000',
+        'theme-subtext': '#595959',
+        'theme-primary': '#005578',
+        'theme-accent': '#ab4b48',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],

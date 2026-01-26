@@ -33,7 +33,7 @@
 			<div
 				class="absolute inset-0 {format === 'embed'
 					? ''
-					: 'md:left-auto md:right-0 md:w-[60%]'} h-full bg-lt-bg transition-all duration-300 relative overflow-hidden"
+					: 'md:left-auto md:right-0 md:w-[60%]'} h-full bg-theme-bg transition-all duration-300 relative overflow-hidden"
 			>
 				<!-- 1. Datawrapper Layer (Preloaded Stack) -->
 				{#each uniqueDwCharts as chartId (chartId)}
@@ -83,8 +83,8 @@
 							class="
                  w-[90%] md:w-[80%] max-w-lg
                  bg-white/60 backdrop-blur-md
-                 shadow-sm border border-lt-border rounded-sm
-                 p-4 text-lg font-light leading-relaxed text-lt-text
+                 shadow-sm border border-theme-border rounded-sm
+                 p-4 text-lg font-light leading-relaxed text-theme-text
                  transition-opacity duration-500
                  {index === i ? 'opacity-100' : 'opacity-40'}
                "

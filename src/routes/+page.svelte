@@ -7,7 +7,7 @@
 </script>
 
 <main
-	class="w-full min-h-screen bg-lt-bg text-lt-text font-sans selection:bg-lt-water selection:text-white"
+	class="w-full min-h-screen bg-theme-bg text-theme-text font-sans selection:bg-theme-water selection:text-white"
 >
 	{#if story.format !== 'embed'}
 		<header
@@ -15,7 +15,7 @@
 		>
 			<h1 class="text-4xl md:text-6xl font-medium mb-6 tracking-tight">{story.title}</h1>
 			<p
-				class="text-xl md:text-2xl font-light text-lt-subtext leading-relaxed max-w-2xl text-balance"
+				class="text-xl md:text-2xl font-light text-theme-subtext leading-relaxed max-w-2xl text-balance"
 			>
 				{story.intro}
 			</p>
@@ -26,9 +26,9 @@
 
 	{#if story.format !== 'embed'}
 		<footer
-			class="py-24 px-12 text-center text-lt-subtext text-xs border-t border-lt-border/20 mt-12"
+			class="py-24 px-12 text-center text-theme-subtext text-xs border-t border-theme-border/20 mt-12"
 		>
-			<p>&copy; 2024 Le Temps. All rights reserved.</p>
+			<p>&copy; 2024 Scrollytelling Boilerplate. All rights reserved.</p>
 		</footer>
 	{/if}
 </main>
