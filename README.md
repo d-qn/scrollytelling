@@ -33,6 +33,39 @@ npm run build
 ```
 The output (in `build/`) can be hosted on any static server (S3, Vercel, Netlify, FTP).
 
+## 🎓 Guide for Beginners
+
+If you are new to coding/github, here is the complete workflow to use this tool:
+
+### 1. Get the Code (Clone)
+Open your terminal (Command Prompt on Windows, Terminal on Mac) and run:
+```bash
+git clone https://github.com/YourUsername/scrollytelling-boilerplate.git
+cd scrollytelling-boilerplate
+npm install
+```
+
+### 2. Edit the Story
+1. Open the project in a code editor like **VS Code**.
+2. Go to `src/data/story.json`. This is where you write your article.
+3. For each step, create a chart in Datawrapper, publish it, and copy its **ID** (e.g., `ABCDE`).
+4. Paste the ID into `"vizProps": { "chartId": "ABCDE" }`.
+
+### 3. Preview your work
+Run this command to see your changes live in your browser (usually at `http://localhost:5173`):
+```bash
+npm run dev
+```
+
+### 4. Deploy (Publish)
+When you are happy with the result, build the final files:
+```bash
+npm run build
+```
+This creates a `build/` folder.
+- **For standard hosting**: Upload the *contents* of this folder to your FTP server or S3 bucket.
+- **For CMS**: See `docs/WORKFLOW_CMS.md` for integration details.
+
 ## 🎨 Customization
 
 ### Colors
@@ -68,8 +101,7 @@ The narrative is driven by `src/data/story.json`.
       "content": "<h2>Step 1</h2><p>Description...</p>",
       "vizType": "datawrapper",
       "vizProps": {
-        "chartId": "ABCDE",
-        "state": { "highlight": "region-1" }
+        "chartId": "ABCDE"
       }
     }
   ]
