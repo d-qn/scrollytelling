@@ -4,7 +4,13 @@
 	import type { StoryData } from '$lib/types';
 
 	const story = storyData as unknown as StoryData;
+	export const prerender = true;
 </script>
+
+<svelte:head>
+	<title>{story.title}</title>
+	<meta name="description" content={story.intro} />
+</svelte:head>
 
 <main
 	class="w-full min-h-screen text-theme-text font-sans selection:bg-theme-water selection:text-white"

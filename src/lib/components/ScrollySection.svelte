@@ -74,15 +74,10 @@
 						: 'md:justify-start md:pl-8'}"
 				>
 					<div
-						class="
-                w-[90%] md:w-[80%] max-w-lg
-                bg-white/70 backdrop-blur-md
-                shadow-sm border border-theme-border rounded-sm
-                p-5 text-lg font-light leading-relaxed text-theme-text
-                transition-opacity duration-500
-                pointer-events-auto
-                {index === i + 1 ? 'opacity-100' : 'opacity-30'}
-              "
+						class="text-box w-[90%] md:w-[80%] max-w-lg bg-white/70 backdrop-blur-md shadow-sm border border-theme-border rounded-sm p-5 text-lg font-light leading-relaxed text-theme-text transition-opacity duration-500 pointer-events-auto {index ===
+						i + 1
+							? 'opacity-100'
+							: 'opacity-30'}"
 					>
 						{@html step.content}
 					</div>
@@ -107,7 +102,7 @@
 		z-index: 1 !important;
 	}
 
-	.text-box {
+	:global(.text-box) {
 		/* Re-enable interaction specifically for the text bubbles */
 		pointer-events: auto !important;
 	}

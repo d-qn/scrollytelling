@@ -1,5 +1,5 @@
 {
-    "format": "embed",
+    "format": "standalone",
     "title": "Scrollytelling Boilerplate",
     "intro": "Une exploration visuelle des changements climatiques en Suisse.",
     "steps": [

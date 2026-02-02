@@ -7,7 +7,6 @@ export interface StoryStep {
         chartId?: string; // For Datawrapper
         component?: string; // For custom components mapping
         src?: string; // For images
-        src?: string; // For images
         [key: string]: any;
     };
 }
