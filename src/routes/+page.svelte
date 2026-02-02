@@ -1,10 +1,17 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import ScrollySection from '$lib/components/ScrollySection.svelte';
 	import storyData from '../data/story.json'; // Importing JSON requires resolveJsonModule which is default in recent TS setup
 	import type { StoryData } from '$lib/types';
 
 	const story = storyData as unknown as StoryData;
-	export const prerender = true;
+
+	onMount(() => {
+		if (story.format === 'embed') {
+			document.documentElement.classList.add('embed-mode');
+			document.body.classList.add('embed-mode');
+		}
+	});
 </script>
 
 <svelte:head>
