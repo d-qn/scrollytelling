@@ -29,33 +29,34 @@
 
 <div class="relative w-full">
 	<Scroller top={0} bottom={0} bind:index bind:offset bind:progress>
-		<div slot="background" class="h-screen w-full relative z-[1]">
+		<div slot="background" class="h-screen w-full relative z-[1] pointer-events-none">
+			<!-- background slot is pointer-events-none, but charts inside will be -auto -->
 			<div
 				class="absolute inset-0 {format === 'embed'
 					? ''
 					: 'md:left-auto md:right-0 md:w-[60%]'} h-full bg-theme-bg transition-all duration-300 relative overflow-hidden"
 			>
-				<!-- 1. Datawrapper Layer (Preloaded Stack) -->
 				{#each uniqueDwCharts as chartId (chartId)}
 					<div
-						class="absolute inset-0 w-full h-full transition-opacity duration-500"
+						class="absolute inset-0 w-full h-full transition-opacity duration-500 pointer-events-none"
+						style:visibility={currentStep.vizType === 'datawrapper' &&
+						currentStep.vizProps.chartId === chartId
+							? 'visible'
+							: 'hidden'}
 						class:opacity-100={currentStep.vizType === 'datawrapper' &&
 							currentStep.vizProps.chartId === chartId}
 						class:opacity-0={currentStep.vizProps.chartId !== chartId}
-						style:visibility={currentStep.vizProps.chartId === chartId ? 'visible' : 'hidden'}
-						class:pointer-events-none={currentStep.vizProps.chartId !== chartId}
-						class:pointer-events-auto={currentStep.vizProps.chartId === chartId}
 						class:z-10={currentStep.vizType === 'datawrapper' &&
 							currentStep.vizProps.chartId === chartId}
 					>
-						<!-- Pass current state ONLY if this chart is active (to trigger postMessage updates) -->
-						<DatawrapperChart {chartId} />
+						<div class="pointer-events-auto w-full h-full">
+							<DatawrapperChart {chartId} />
+						</div>
 					</div>
 				{/each}
 
-				<!-- 2. Other Visualizations (Custom, Image) -->
 				{#if currentStep && currentStep.vizType !== 'datawrapper'}
-					<div class="absolute inset-0 w-full h-full z-20">
+					<div class="absolute inset-0 w-full h-full z-20 pointer-events-auto">
 						<VizContainer step={currentStep} />
 					</div>
 				{/if}
@@ -64,21 +65,20 @@
 
 		<div
 			slot="foreground"
-			class="relative z-[2] w-full {format === 'embed' ? '' : 'md:w-[40%]'} pointer-events-none"
+			class="relative z-[10] w-full {format === 'embed' ? '' : 'md:w-[40%]'} pointer-events-none"
 		>
 			<!-- 
          Foreground container is pointer-events-none to let clicks pass to the background (iframe).
          We only activate pointer-events on the text boxes themselves.
        -->
 			<div class="pb-[50vh]">
-				<!-- Spacer for the very first step entry -->
-				<section class="min-h-screen pointer-events-none"></section>
 				{#each steps as step, i}
 					<section
 						class="
                 min-h-screen
                 flex items-center justify-center
                 {format === 'embed' ? '' : 'md:justify-start md:pl-8'}
+                {i === 0 ? 'pt-[100vh]' : ''}
             "
 					>
 						<!-- Text Box -->
