@@ -59,7 +59,7 @@
 <div
 	bind:this={scrollContainer}
 	class="relative w-full bg-theme-bg grid grid-cols-1 grid-rows-1 {format === 'embed'
-		? 'h-full overflow-y-scroll scroll-smooth'
+		? 'h-full overflow-y-scroll scroll-smooth hide-scrollbar'
 		: ''}"
 >
 	<!-- 
@@ -150,5 +150,14 @@
 	/* Assure que le Grid prend bien toute la hauteur dans main */
 	:global(.embed-mode) {
 		height: 100%;
+	}
+
+	/* Hide scrollbar for cleaner UX */
+	.hide-scrollbar {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
+	.hide-scrollbar::-webkit-scrollbar {
+		display: none;
 	}
 </style>
