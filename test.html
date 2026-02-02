@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Validé - Scrolly Parallax Embed</title>
+    <title>Test Embed Final (Iframe)</title>
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -32,25 +32,17 @@
         }
 
         /* 
-           SIMULATION SIRIUS / CMS
-           On force une hauteur fixe pour le bloc d'embed.
-           C'est essentiel pour que le parallaxe fonctionne (Scrollbox).
+           STYLE DE L'IFRAME
+           Simple, robuste, standard.
         */
-        #scrolly-container {
+        .scrolly-iframe {
             width: 100%;
             height: 660px;
-            /* HAUTEUR FIXE OBLIGATOIRE POUR LE PARALLAXE */
-            margin: 40px 0;
+            /* La hauteur fixe décidée pour le projet */
             border: 1px solid #ddd;
-            background: #eee;
-            position: relative;
-        }
-
-        /* On force l'iframe à remplir la boîte */
-        #scrolly-container iframe {
-            width: 100% !important;
-            height: 100% !important;
+            background: #f9f9f9;
             display: block;
+            margin: 0 0;
         }
     </style>
 </head>
@@ -58,26 +50,27 @@
 <body>
 
     <div class="article-col">
-        <h1>Article Test Sirius</h1>
-        <p>Ceci est un paragraphe d'introduction typique dans un article. Le module scrollytelling va s'insérer
-            ci-dessous sous forme de "Scrollbox".</p>
-        <p>Le lecteur devra scroller <strong>à l'intérieur</strong> du module pour voir l'animation se dérouler. C'est
-            le seul moyen technique de conserver un effet de parallaxe fluide dans une intégration CMS standard.</p>
+        <h1>Article Test Final</h1>
+        <p>Ceci est un paragraphe d'introduction. Nous intégrons maintenant le module via une simple
+            <code>&lt;iframe&gt;</code> standard. C'est la méthode la plus robuste pour Sirius.</p>
 
-        <!-- EMBED -->
-        <div id="scrolly-container"></div>
+        <!-- 
+            L'INTEGRATION FINALE 
+            Plus de script Pym. Juste une iframe.
+            - src : pointe vers votre build local (preview) ou l'URL finale
+            - height : 660px (pour matcher le design "Scrollbox")
+        -->
+        <iframe src="http://localhost:4173/" class="scrolly-iframe" title="Scrollytelling Visualization"
+            loading="lazy"></iframe>
 
-        <p>Suite de l'article. Une fois le scroll du module terminé, la page continue normalement.</p>
-        <p>Lorem ipsum doloasdfasdf asdfa sasdfas asdfdasfr sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.</p>
+        <p>Suite de l'article. Le scroll est cantonné à l'intérieur de la boîte ci-dessus. Une fois terminé, le lecteur
+            continue ici.</p>
+        <p>Cette approche garantit :
+            <br>1. Le fonctionnement du parallaxe (car hauteur fixe).
+            <br>2. Aucune boucle infinie.
+            <br>3. Compatibilité 100% avec tous les CMS.
+        </p>
     </div>
-
-    <!-- SCRIPT PYM -->
-    <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
-    <script>
-        // On pointe sur le serveur de preview local
-        var pymParent = new pym.Parent('scrolly-container', 'http://localhost:4173/', {});
-    </script>
 
 </body>
 

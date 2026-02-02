@@ -59,7 +59,7 @@
 <div
 	bind:this={scrollContainer}
 	class="relative w-full bg-theme-bg grid grid-cols-1 grid-rows-1 {format === 'embed'
-		? 'h-full overflow-y-scroll snap-y snap-mandatory scroll-smooth'
+		? 'h-full overflow-y-scroll scroll-smooth'
 		: ''}"
 >
 	<!-- 
@@ -100,7 +100,7 @@
 	-->
 	<div class="col-start-1 row-start-1 z-10 w-full pointer-events-none">
 		<!-- Spacer -->
-		<div class="h-[50vh]"></div>
+		<div class={format === 'embed' ? 'h-[80vh]' : 'h-[50vh]'}></div>
 
 		{#each steps as step, i}
 			<section
@@ -108,7 +108,7 @@
 				data-index={i}
 				class="
 					flex items-center justify-center p-4
-					{format === 'embed' ? 'min-h-[90vh] snap-center' : 'min-h-screen md:justify-start md:pl-12'}
+					{format === 'embed' ? 'min-h-[150vh]' : 'min-h-screen md:justify-start md:pl-12'}
 				"
 			>
 				<div
@@ -128,7 +128,7 @@
 		{/each}
 
 		<!-- Spacer -->
-		<div class="h-[60vh]"></div>
+		<div class={format === 'embed' ? 'h-[80vh]' : 'h-[60vh]'}></div>
 	</div>
 </div>
 
