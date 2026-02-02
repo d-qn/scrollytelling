@@ -10,10 +10,11 @@
 	let index = 0;
 	let offset = 0;
 	let progress = 0;
-	let width = 0;
 
-	// Reactive derived value for the current step
-	$: currentStep = steps[index] || steps[0];
+	// Because we added an empty section at the start for the spacer,
+	// the actual content index is index - 1.
+	$: activeStepIndex = Math.max(0, index - 1);
+	$: currentStep = steps[activeStepIndex] || steps[0];
 
 	// Extract unique Datawrapper Chart IDs to preload
 	$: uniqueDwCharts = [
@@ -25,16 +26,13 @@
 	];
 </script>
 
-<svelte:window bind:innerWidth={width} />
-
-<div class="relative w-full">
+<div class="relative w-full overflow-x-hidden interactivity-fix">
 	<Scroller top={0} bottom={0} bind:index bind:offset bind:progress>
-		<div slot="background" class="h-screen w-full relative z-0 pointer-events-auto">
-			<!-- Background is explicitly interactive -->
+		<div slot="background" class="h-screen w-full relative z-0">
 			<div
 				class="absolute inset-0 {format === 'embed'
 					? ''
-					: 'md:left-auto md:right-0 md:w-[60%]'} h-full bg-theme-bg transition-all duration-300 relative overflow-hidden"
+					: 'md:left-auto md:right-0 md:w-[60%]'} h-full bg-theme-bg"
 			>
 				{#each uniqueDwCharts as chartId (chartId)}
 					<div
@@ -54,50 +52,56 @@
 				{/each}
 
 				{#if currentStep && currentStep.vizType !== 'datawrapper'}
-					<div class="absolute inset-0 w-full h-full z-20 pointer-events-auto">
+					<div class="absolute inset-0 w-full h-full z-20">
 						<VizContainer step={currentStep} />
 					</div>
 				{/if}
 			</div>
 		</div>
 
-		<div
-			slot="foreground"
-			class="relative z-10 {format === 'embed'
-				? 'w-full'
-				: 'w-full md:w-[40%]'} pointer-events-none"
-		>
+		<div slot="foreground" class="relative z-10 pointer-events-none w-full">
 			<!-- 
-         Foreground container is pointer-events-none to let clicks pass to the background (iframe).
-         We only activate pointer-events on the text boxes themselves.
-       -->
-			<div class="pb-[50vh]">
-				{#each steps as step, i}
-					<section
+        Direct children of foreground slot are counted by Scroller. 
+        1. Spacer section 
+      -->
+			<section class="min-h-screen"></section>
+
+			<!-- 2. Content sections -->
+			{#each steps as step, i}
+				<section
+					class="min-h-screen flex items-center justify-center {format === 'embed'
+						? ''
+						: 'md:justify-start md:pl-8'}"
+				>
+					<div
 						class="
-                min-h-screen
-                flex items-center justify-center
-                {format === 'embed' ? '' : 'md:justify-start md:pl-8'}
-                {i === 0 ? 'pt-[100vh]' : ''}
-            "
+                w-[90%] md:w-[80%] max-w-lg
+                bg-white/70 backdrop-blur-md
+                shadow-sm border border-theme-border rounded-sm
+                p-5 text-lg font-light leading-relaxed text-theme-text
+                transition-opacity duration-500
+                pointer-events-auto
+                {index === i + 1 ? 'opacity-100' : 'opacity-30'}
+              "
 					>
-						<!-- Text Box -->
-						<div
-							class="
-                 w-[90%] md:w-[80%] max-w-lg
-                 bg-white/60 backdrop-blur-md
-                 shadow-sm border border-theme-border rounded-sm
-                 p-4 text-lg font-light leading-relaxed text-theme-text
-                 transition-opacity duration-500
-                 pointer-events-auto
-                 {index === i ? 'opacity-100' : 'opacity-40'}
-               "
-						>
-							{@html step.content}
-						</div>
-					</section>
-				{/each}
-			</div>
+						{@html step.content}
+					</div>
+				</section>
+			{/each}
 		</div>
 	</Scroller>
 </div>
+
+<style>
+	/* 
+     This is the secret sauce for interaction: 
+     The scroller's background slot is often wrapped in a div by the library.
+     We ensure pointer-events are allowed on the background container.
+  */
+	:global(.interactivity-fix [slot='background']) {
+		pointer-events: auto !important;
+	}
+	:global(.interactivity-fix [slot='foreground']) {
+		pointer-events: none !important;
+	}
+</style>
