@@ -28,7 +28,7 @@
 
 <div class="relative w-full overflow-x-hidden">
 	<Scroller top={0} bottom={0} bind:index bind:offset bind:progress>
-		<div slot="background" class="h-screen w-full relative z-0">
+		<div slot="background" class="h-full w-full relative z-0">
 			<div
 				class="absolute inset-0 {format === 'embed'
 					? ''
@@ -64,14 +64,14 @@
         Direct children of foreground slot are counted by Scroller. 
         1. Spacer section 
       -->
-			<section class="min-h-screen"></section>
+			<section class="h-[700px]"></section>
 
 			<!-- 2. Content sections -->
 			{#each steps as step, i}
 				<section
-					class="min-h-screen flex items-center justify-center {format === 'embed'
+					class="min-h-[700px] flex items-center justify-center {format === 'embed'
 						? ''
-						: 'md:justify-start md:pl-8'}"
+						: 'md:justify-start md:pl-8'} {i === 0 ? 'pt-[300px]' : ''}"
 				>
 					<div
 						class="text-box w-[90%] md:w-[80%] max-w-lg bg-white/70 backdrop-blur-md shadow-sm border border-theme-border rounded-sm p-5 text-lg font-light leading-relaxed text-theme-text transition-opacity duration-500 pointer-events-auto {index ===
