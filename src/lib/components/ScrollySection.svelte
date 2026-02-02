@@ -28,7 +28,7 @@
 
 <div class="relative w-full overflow-x-hidden">
 	<Scroller top={0} bottom={0} bind:index bind:offset bind:progress>
-		<div slot="background" class="h-full w-full relative z-0">
+		<div slot="background" class="h-[700px] w-full relative z-0">
 			<div
 				class="absolute inset-0 {format === 'embed'
 					? ''
