@@ -29,7 +29,7 @@
 
 <div class="relative w-full">
 	<Scroller top={0} bottom={0} bind:index bind:offset bind:progress>
-		<div slot="background" class="h-screen w-full">
+		<div slot="background" class="h-screen w-full relative z-0">
 			<div
 				class="absolute inset-0 {format === 'embed'
 					? ''
@@ -43,6 +43,7 @@
 							currentStep.vizProps.chartId === chartId}
 						class:opacity-0={currentStep.vizProps.chartId !== chartId}
 						class:pointer-events-none={currentStep.vizProps.chartId !== chartId}
+						class:pointer-events-auto={currentStep.vizProps.chartId === chartId}
 						class:z-10={currentStep.vizType === 'datawrapper' &&
 							currentStep.vizProps.chartId === chartId}
 					>
@@ -62,14 +63,14 @@
 
 		<div
 			slot="foreground"
-			class="relative z-10 w-full {format === 'embed' ? '' : 'md:w-[40%]'} pointer-events-none"
+			class="relative z-20 w-full {format === 'embed' ? '' : 'md:w-[40%]'} pointer-events-none"
 		>
 			<!-- 
          Foreground container is pointer-events-none to let clicks pass to the background (iframe).
          We only activate pointer-events on the text boxes themselves.
        -->
-			<div class="pt-[50vh] pb-[50vh]">
-				<!-- pt-[50vh] ensures the first text box starts from the bottom of the screen -->
+			<div class="pt-[80vh] pb-[50vh]">
+				<!-- pt-[80vh] ensures the first text box starts further down for a smoother entry -->
 				{#each steps as step, i}
 					<section
 						class="
