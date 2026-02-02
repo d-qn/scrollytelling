@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Scroller from '@sveltejs/svelte-scroller';
 	import type { StoryStep } from '$lib/types';
 	import VizContainer from './VizContainer.svelte';
 	import DatawrapperChart from './DatawrapperChart.svelte';
@@ -7,103 +6,63 @@
 	export let steps: StoryStep[] = [];
 	export let format: 'standalone' | 'embed' = 'standalone';
 
-	let index = 0;
-	let offset = 0;
-	let progress = 0;
-
-	// Because we added an empty section at the start for the spacer,
-	// the actual content index is index - 1.
-	$: activeStepIndex = Math.max(0, index - 1);
-	$: currentStep = steps[activeStepIndex] || steps[0];
-
-	// Extract unique Datawrapper Chart IDs to preload
-	$: uniqueDwCharts = [
-		...new Set(
-			steps
-				.filter((s) => s.vizType === 'datawrapper' && s.vizProps.chartId)
-				.map((s) => s.vizProps.chartId as string)
-		)
-	];
+	// On ne garde que les charts uniques pour la logique de chargement si besoin,
+	// mais ici on va afficher les graphiques directement dans le flux.
 </script>
 
-<div class="relative w-full overflow-x-hidden">
-	<Scroller top={0} bottom={0} bind:index bind:offset bind:progress>
-		<div slot="background" class="h-[700px] w-full relative z-0">
+<div class="w-full bg-theme-bg">
+	{#each steps as step, i}
+		<section
+			class="flex flex-col {format === 'standalone'
+				? 'md:flex-row'
+				: ''} min-h-[60vh] border-b border-theme-border/10"
+		>
+			<!-- Partie Graphique -->
 			<div
-				class="absolute inset-0 {format === 'embed'
-					? ''
-					: 'md:left-auto md:right-0 md:w-[60%]'} h-full bg-theme-bg"
+				class="w-full {format === 'standalone'
+					? 'md:w-3/5 md:order-2'
+					: ''} h-[400px] md:h-[600px] sticky top-0 md:relative"
 			>
-				{#each uniqueDwCharts as chartId (chartId)}
+				<div class="w-full h-full p-2 md:p-6">
 					<div
-						class="absolute inset-0 w-full h-full transition-opacity duration-500"
-						style:visibility={currentStep.vizType === 'datawrapper' &&
-						currentStep.vizProps.chartId === chartId
-							? 'visible'
-							: 'hidden'}
-						class:opacity-100={currentStep.vizType === 'datawrapper' &&
-							currentStep.vizProps.chartId === chartId}
-						class:opacity-0={currentStep.vizProps.chartId !== chartId}
-						class:z-10={currentStep.vizType === 'datawrapper' &&
-							currentStep.vizProps.chartId === chartId}
+						class="w-full h-full bg-white rounded-lg shadow-sm overflow-hidden border border-theme-border/20"
 					>
-						<DatawrapperChart {chartId} />
+						{#if step.vizType === 'datawrapper'}
+							<DatawrapperChart chartId={step.vizProps.chartId} />
+						{:else}
+							<VizContainer {step} />
+						{/if}
 					</div>
-				{/each}
-
-				{#if currentStep && currentStep.vizType !== 'datawrapper'}
-					<div class="absolute inset-0 w-full h-full z-20">
-						<VizContainer step={currentStep} />
-					</div>
-				{/if}
+				</div>
 			</div>
-		</div>
 
-		<div slot="foreground" class="relative z-10 pointer-events-none w-full">
-			<!-- 
-        Direct children of foreground slot are counted by Scroller. 
-        1. Spacer section 
-      -->
-			<section class="h-[700px]"></section>
-
-			<!-- 2. Content sections -->
-			{#each steps as step, i}
-				<section
-					class="min-h-[700px] flex items-center justify-center {format === 'embed'
-						? ''
-						: 'md:justify-start md:pl-8'} {i === 0 ? 'pt-[300px]' : ''}"
-				>
-					<div
-						class="text-box w-[90%] md:w-[80%] max-w-lg bg-white/70 backdrop-blur-md shadow-sm border border-theme-border rounded-sm p-5 text-lg font-light leading-relaxed text-theme-text transition-opacity duration-500 pointer-events-auto {index ===
-						i + 1
-							? 'opacity-100'
-							: 'opacity-30'}"
-					>
+			<!-- Partie Texte -->
+			<div
+				class="w-full {format === 'standalone'
+					? 'md:w-2/5 md:order-1'
+					: ''} flex items-center p-6 md:p-12"
+			>
+				<div class="max-w-lg mx-auto md:mx-0">
+					<div class="prose prose-lg text-theme-text font-light leading-relaxed">
 						{@html step.content}
 					</div>
-				</section>
-			{/each}
-		</div>
-	</Scroller>
+				</div>
+			</div>
+		</section>
+	{/each}
 </div>
 
 <style>
-	/* 
-     CRITICAL: svelte-scroller injects custom tags into the DOM.
-     We must target these specific tags to allow clicks to pass through.
-  */
-	:global(svelte-scroller-foreground) {
-		pointer-events: none !important;
-		z-index: 2 !important;
+	:global(body) {
+		overflow-x: hidden;
 	}
 
-	:global(svelte-scroller-background) {
-		pointer-events: auto !important;
-		z-index: 1 !important;
-	}
-
-	:global(.text-box) {
-		/* Re-enable interaction specifically for the text bubbles */
-		pointer-events: auto !important;
+	/* Assure que les titres dans le JSON sont beaux */
+	:global(h2) {
+		font-size: 1.875rem;
+		line-height: 2.25rem;
+		font-weight: 500;
+		color: theme('colors.theme-primary');
+		margin-bottom: 1rem;
 	}
 </style>

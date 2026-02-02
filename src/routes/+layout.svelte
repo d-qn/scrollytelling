@@ -7,13 +7,7 @@
 	onMount(async () => {
 		const pymModule = await import('pym.js');
 		const PymChild = pymModule.default.Child;
-		const child = new PymChild({ polling: 500 });
-
-		// Debug height
-		setInterval(() => {
-			const height = document.documentElement.scrollHeight;
-			console.log('Current body height:', height);
-		}, 2000);
+		new PymChild({ polling: 500 });
 	});
 </script>
 
