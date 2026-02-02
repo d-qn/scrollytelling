@@ -26,7 +26,7 @@
 	];
 </script>
 
-<div class="relative w-full overflow-x-hidden interactivity-fix">
+<div class="relative w-full overflow-x-hidden">
 	<Scroller top={0} bottom={0} bind:index bind:offset bind:progress>
 		<div slot="background" class="h-screen w-full relative z-0">
 			<div
@@ -94,14 +94,21 @@
 
 <style>
 	/* 
-     This is the secret sauce for interaction: 
-     The scroller's background slot is often wrapped in a div by the library.
-     We ensure pointer-events are allowed on the background container.
+     CRITICAL: svelte-scroller injects custom tags into the DOM.
+     We must target these specific tags to allow clicks to pass through.
   */
-	:global(.interactivity-fix [slot='background']) {
-		pointer-events: auto !important;
-	}
-	:global(.interactivity-fix [slot='foreground']) {
+	:global(svelte-scroller-foreground) {
 		pointer-events: none !important;
+		z-index: 2 !important;
+	}
+
+	:global(svelte-scroller-background) {
+		pointer-events: auto !important;
+		z-index: 1 !important;
+	}
+
+	.text-box {
+		/* Re-enable interaction specifically for the text bubbles */
+		pointer-events: auto !important;
 	}
 </style>
