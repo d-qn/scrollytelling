@@ -40,7 +40,7 @@ If you are new to coding/github, here is the complete workflow to use this tool:
 ### 1. Get the Code (Clone)
 Open your terminal (Command Prompt on Windows, Terminal on Mac) and run:
 ```bash
-git clone https://github.com/YourUsername/scrollytelling-boilerplate.git
+git clone https://github.com/d-qn/scrollytelling-boilerplate.git
 cd scrollytelling-boilerplate
 npm install
 ```
