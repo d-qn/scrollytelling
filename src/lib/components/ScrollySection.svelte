@@ -64,16 +64,21 @@
 			slot="foreground"
 			class="relative z-10 w-full {format === 'embed' ? '' : 'md:w-[40%]'} pointer-events-none"
 		>
-			<div class="pb-[50vh]">
+			<!-- 
+         Foreground container is pointer-events-none to let clicks pass to the background (iframe).
+         We only activate pointer-events on the text boxes themselves.
+       -->
+			<div class="pt-[50vh] pb-[50vh]">
+				<!-- pt-[50vh] ensures the first text box starts from the bottom of the screen -->
 				{#each steps as step, i}
 					<section
 						class="
                 min-h-screen
                 flex items-center justify-center
                 {format === 'embed' ? '' : 'md:justify-start md:pl-8'}
-                pointer-events-auto
             "
 					>
+						<!-- Text Box -->
 						<div
 							class="
                  w-[90%] md:w-[80%] max-w-lg
@@ -81,6 +86,7 @@
                  shadow-sm border border-theme-border rounded-sm
                  p-4 text-lg font-light leading-relaxed text-theme-text
                  transition-opacity duration-500
+                 pointer-events-auto
                  {index === i ? 'opacity-100' : 'opacity-40'}
                "
 						>
