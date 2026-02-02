@@ -7,7 +7,7 @@
 </script>
 
 <main
-	class="w-full min-h-screen bg-theme-bg text-theme-text font-sans selection:bg-theme-water selection:text-white"
+	class="w-full min-h-screen text-theme-text font-sans selection:bg-theme-water selection:text-white"
 >
 	{#if story.format !== 'embed'}
 		<header
