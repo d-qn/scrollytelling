@@ -29,8 +29,8 @@
 
 <div class="relative w-full">
 	<Scroller top={0} bottom={0} bind:index bind:offset bind:progress>
-		<div slot="background" class="h-screen w-full relative z-[1] pointer-events-none">
-			<!-- background slot is pointer-events-none, but charts inside will be -auto -->
+		<div slot="background" class="h-screen w-full relative z-0 pointer-events-auto">
+			<!-- Background is explicitly interactive -->
 			<div
 				class="absolute inset-0 {format === 'embed'
 					? ''
@@ -38,7 +38,7 @@
 			>
 				{#each uniqueDwCharts as chartId (chartId)}
 					<div
-						class="absolute inset-0 w-full h-full transition-opacity duration-500 pointer-events-none"
+						class="absolute inset-0 w-full h-full transition-opacity duration-500"
 						style:visibility={currentStep.vizType === 'datawrapper' &&
 						currentStep.vizProps.chartId === chartId
 							? 'visible'
@@ -49,9 +49,7 @@
 						class:z-10={currentStep.vizType === 'datawrapper' &&
 							currentStep.vizProps.chartId === chartId}
 					>
-						<div class="pointer-events-auto w-full h-full">
-							<DatawrapperChart {chartId} />
-						</div>
+						<DatawrapperChart {chartId} />
 					</div>
 				{/each}
 
@@ -65,7 +63,9 @@
 
 		<div
 			slot="foreground"
-			class="relative z-[10] w-full {format === 'embed' ? '' : 'md:w-[40%]'} pointer-events-none"
+			class="relative z-10 {format === 'embed'
+				? 'w-full'
+				: 'w-full md:w-[40%]'} pointer-events-none"
 		>
 			<!-- 
          Foreground container is pointer-events-none to let clicks pass to the background (iframe).
