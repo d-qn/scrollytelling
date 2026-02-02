@@ -62,9 +62,9 @@ When you are happy with the result, build the final files:
 ```bash
 npm run build
 ```
-This creates a `build/` folder.
-- **For standard hosting**: Upload the *contents* of this folder to your FTP server or S3 bucket.
-- **For CMS**: See `docs/WORKFLOW_CMS.md` for integration details.
+This creates a `build/` folder. **C'est tout.** Grâce aux chemins relatifs, vous pouvez uploader ce dossier n'importe où (à la racine ou dans un sous-dossier), cela fonctionnera automatiquement.
+- **Pour l'hébergement** : Téléchargez le contenu du dossier `build/` sur votre serveur.
+- **Pour CMS** : Voir `docs/WORKFLOW_CMS.md` pour les détails d'intégration.
 
 ## 🎨 Customization
 

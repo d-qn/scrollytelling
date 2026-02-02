@@ -59,11 +59,10 @@ Once your SvelteKit app is compiled, here is how to embed it (e.g., in WordPress
 
 ### Build Configuration
 
-If hosting in a subdirectory (e.g., `https://example.com/2026/my-story/`), define `BASE_PATH` before building.
+Simply build the project. No special path configuration is needed as the boilerplate uses **relative paths** automatically.
 
 ```bash
 # Terminal
-export BASE_PATH="/2026/my-story"
 npm run build
 ```
 
