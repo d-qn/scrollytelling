@@ -38,9 +38,9 @@
         .scrolly-iframe {
             width: 100%;
             height: 660px;
-            /* La hauteur fixe décidée pour le projet */
-            border: 1px solid #ddd;
-            background: #f9f9f9;
+            /* Safe Mobile Height (iPhone SE = ~667px) */
+            border: 0;
+            /*background: #f9f9f9;*/
             display: block;
             margin: 0 0;
         }
@@ -52,7 +52,8 @@
     <div class="article-col">
         <h1>Article Test Final</h1>
         <p>Ceci est un paragraphe d'introduction. Nous intégrons maintenant le module via une simple
-            <code>&lt;iframe&gt;</code> standard. C'est la méthode la plus robuste pour Sirius.</p>
+            <code>&lt;iframe&gt;</code> standard. C'est la méthode la plus robuste pour Sirius.
+        </p>
 
         <!-- 
             L'INTEGRATION FINALE 
