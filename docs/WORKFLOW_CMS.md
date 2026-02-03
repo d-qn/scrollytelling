@@ -76,16 +76,46 @@ Upload the `build/` folder contents to your static file server (S3, Google Cloud
 
 **Example final URL:** `https://example.com/2026/my-story/index.html`
 
-### Embedding via Pym.js
+### Embedding via Iframe (Recommended)
 
-To embed the story responsively (auto-height), add a "Code Block" or "Custom HTML" block in your CMS:
+To embed the story robustly, use a standard `<iframe>`. This method is bulletproof against CMS script blockers and prevents infinite resizing loops.
+
+**Fixed-Height "Scrollbox" Pattern:**
+Since the boilerplate uses internal scrolling, you must define a fixed height for the iframe.
 
 ```html
-<div id="scrolly-container"></div>
-<script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
-<script>
-    var pymParent = new pym.Parent('scrolly-container', 'https://example.com/2026/my-story/index.html', {});
-</script>
+<iframe 
+    src="https://example.com/2026/my-story/index.html" 
+    width="100%" 
+    height="660" 
+    frameborder="0" 
+    style="border: none; display: block;"
+    title="Scrollytelling Story"
+    loading="lazy"
+></iframe>
 ```
 
-*Note: Ensure `pym.v1.min.js` is allowed by your site's CSP.*
+### Responsive Height (Optional)
+If your CMS allows custom CSS, you can make the height responsive:
+
+```html
+<style>
+  .scrolly-iframe {
+      width: 100%;
+      height: 600px; /* Mobile safe height */
+      border: none;
+      display: block;
+  }
+  @media (min-width: 768px) {
+      .scrolly-iframe {
+          height: 800px; /* Taller on Desktop */
+      }
+  }
+</style>
+
+<iframe 
+    src="https://example.com/2026/my-story/index.html" 
+    class="scrolly-iframe"
+    scrolling="no"
+></iframe>
+```

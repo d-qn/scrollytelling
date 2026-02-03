@@ -12,7 +12,7 @@
 
 	$: currentStep = steps[activeStepIndex] || steps[0];
 
-	// Liste unique des charts
+	// Unique list of charts to preload
 	$: uniqueDwCharts = [
 		...new Set(
 			steps
@@ -35,9 +35,9 @@
 				});
 			},
 			{
-				// Si embed, on observe le conteneur scrolly, sinon le viewport global
+				// If embed, we observe the internal container, otherwise the global viewport
 				root: format === 'embed' ? scrollContainer : null,
-				// Zone de détection au centre
+				// Active detection zone in the center
 				rootMargin: '-45% 0px -45% 0px',
 				threshold: 0
 			}
@@ -53,8 +53,8 @@
 
 <!-- 
     ROOT CONTAINER
-    On utilise le CSS Grid pour superposer proprement le fond (charts) et l'avant-plan (texte).
-    En mode embed : on force le scroll interne sur cet élément.
+    We use CSS Grid to overlay the background (charts) and the foreground (text).
+    In 'embed' mode: we force internal scrolling on this element.
 -->
 <div
 	bind:this={scrollContainer}
@@ -137,7 +137,12 @@
 		pointer-events: auto !important;
 	}
 
-	/* Embed specific fixes force the scrollbox pattern */
+	/* Ensure Grid takes full height in embed mode */
+	:global(.embed-mode) {
+		height: 100%;
+	}
+
+	/* Force specific height layout for embed mode */
 	:global(.embed-mode html),
 	:global(.embed-mode body),
 	:global(.embed-mode main) {
@@ -145,11 +150,6 @@
 		overflow: hidden !important;
 		margin: 0 !important;
 		padding: 0 !important;
-	}
-
-	/* Assure que le Grid prend bien toute la hauteur dans main */
-	:global(.embed-mode) {
-		height: 100%;
 	}
 
 	/* Hide scrollbar for cleaner UX */

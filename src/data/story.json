@@ -1,17 +1,17 @@
 {
     "format": "embed",
-    "title": "Scrollytelling",
-    "intro": "Une exploration visuelle des changements climatiques en Suisse.",
+    "title": "Climate Change in Switzerland",
+    "intro": "A visual exploration of temperature changes and glacial retreat.",
     "steps": [
         {
-            "content": "<h2>Introduction</h2><p class='mt-2'>La température moyenne a augmenté de <strong>2 degrés</strong> depuis 1864, un rythme deux fois plus rapide que la moyenne mondiale.</p>",
+            "content": "<h2>Introduction</h2><p class='mt-2'>Average temperatures have risen by <strong>2 degrees Celsius</strong> since 1864, twice as fast as the global average.</p>",
             "vizType": "datawrapper",
             "vizProps": {
                 "chartId": "Xtx7z"
             }
         },
         {
-            "content": "<h2>L'impact sur les glaciers</h2><p class='mt-2'>Les glaciers reculent visiblement. Observez la différence entre 1900 et 2020 sur cette image satellite.</p>",
+            "content": "<h2>Glacial Impact</h2><p class='mt-2'>Glaciers are visibly retreating. Observe the difference between 1900 and 2020 on this satellite comparison.</p>",
             "vizType": "datawrapper",
             "vizProps": {
                 "chartId": "at5Zk"

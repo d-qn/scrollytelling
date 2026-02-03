@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Embed Final (Iframe)</title>
+    <title>Final Embed Test (Iframe)</title>
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -32,8 +32,8 @@
         }
 
         /* 
-           STYLE DE L'IFRAME
-           Simple, robuste, standard.
+           IFRAME STYLING
+           Simple, robust, standard.
         */
         .scrolly-iframe {
             width: 100%;
@@ -50,26 +50,25 @@
 <body>
 
     <div class="article-col">
-        <h1>Article Test Final</h1>
-        <p>Ceci est un paragraphe d'introduction. Nous intégrons maintenant le module via une simple
-            <code>&lt;iframe&gt;</code> standard. C'est la méthode la plus robuste pour Sirius.
-        </p>
+        <h1>Final Integration Test</h1>
+        <p>This is an introductory paragraph. We are now integrating the module via a standard
+            <code>&lt;iframe&gt;</code>. This is the most robust method for CMS integration.</p>
 
         <!-- 
-            L'INTEGRATION FINALE 
-            Plus de script Pym. Juste une iframe.
-            - src : pointe vers votre build local (preview) ou l'URL finale
-            - height : 660px (pour matcher le design "Scrollbox")
+            FINAL INTEGRATION 
+            Simple iframe pointing to the local build or final URL.
+            - src: points to your local preview server or final hosted URL.
+            - height: 660px (to match the "Scrollbox" design pattern).
         -->
         <iframe src="http://localhost:4173/" class="scrolly-iframe" title="Scrollytelling Visualization"
             loading="lazy"></iframe>
 
-        <p>Suite de l'article. Le scroll est cantonné à l'intérieur de la boîte ci-dessus. Une fois terminé, le lecteur
-            continue ici.</p>
-        <p>Cette approche garantit :
-            <br>1. Le fonctionnement du parallaxe (car hauteur fixe).
-            <br>2. Aucune boucle infinie.
-            <br>3. Compatibilité 100% avec tous les CMS.
+        <p>Following the scrollytelling section, the article continues normally. The scroll is contained within the box
+            above. Once finished, the reader continues here.</p>
+        <p>This approach guarantees:
+            <br>1. Consistent parallax effect (due to fixed height).
+            <br>2. No infinite resizing loops.
+            <br>3. 100% compatibility with all modern CMS platforms.
         </p>
     </div>
 

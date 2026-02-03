@@ -62,9 +62,9 @@ When you are happy with the result, build the final files:
 ```bash
 npm run build
 ```
-This creates a `build/` folder. **C'est tout.** Grâce aux chemins relatifs, vous pouvez uploader ce dossier n'importe où (à la racine ou dans un sous-dossier), cela fonctionnera automatiquement.
-- **Pour l'hébergement** : Téléchargez le contenu du dossier `build/` sur votre serveur.
-- **Pour CMS** : Voir `docs/WORKFLOW_CMS.md` pour les détails d'intégration.
+This creates a `build/` folder. **That's it.** Thanks to relative path configuration, you can upload this folder anywhere (at the root or in a sub-directory), and it will work automatically.
+- **Hosting**: Upload the contents of the `build/` folder to your server.
+- **CMS Integration**: See `docs/WORKFLOW_CMS.md` for details on how to embed the project.
 
 ## 🎨 Customization
 
