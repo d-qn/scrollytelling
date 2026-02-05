@@ -1,17 +1,38 @@
 {
     "format": "embed",
-    "title": "Climate Change in Switzerland",
-    "intro": "A visual exploration of temperature changes and glacial retreat.",
+    "title": "JO hiver",
+    "intro": "scrolly",
     "steps": [
         {
-            "content": "<h2>Introduction</h2><p class='mt-2'>Average temperatures have risen by <strong>2 degrees Celsius</strong> since 1864, twice as fast as the global average.</p>",
+            "content": "<p>Le décompte des médailles est le baromètre universel de la réussite olympique. Aux Jeux de Milan-Cortina, la Suisse va tenter d’égaler, voire surpasser, le record historique de 15 podiums atteint lors des précédentes éditions. Mais cette course au chiffre brut est-elle vraiment représentative?</p>",
+            "vizType": "datawrapper",
+            "vizProps": {
+                "chartId": "nWkG1"
+            }
+        },
+        {
+            "content": "<p>Comparer les moissons de médailles à travers les Jeux occulte une réalité, celle de l’explosion du nombre d’épreuves (compétitions dont le classement final détermine l’attribution d’un podium). </p> <p>Depuis Calgary en 1988, date marquant l'ère du professionnalisme, l’offre olympique a plus que doublé.</p>",
             "vizType": "datawrapper",
             "vizProps": {
                 "chartId": "Xtx7z"
             }
         },
         {
-            "content": "<h2>Glacial Impact</h2><p class='mt-2'>Glaciers are visibly retreating. Observe the difference between 1900 and 2020 on this satellite comparison.</p>",
+            "content": "<p>Cette prolifération des titres décernés est portée par l’avènement de disciplines spectaculaires. Le short-track, le snowboard et le ski freestyle ont profondément transformé le visage des Jeux, multipliant ainsi les opportunités de podiums au-delà des sports historiques</p>",
+            "vizType": "datawrapper",
+            "vizProps": {
+                "chartId": "Al8Ea"
+            }
+        },
+        {
+            "content": "<p>Alors que le ski-alpinisme fera son apparition à Bormio avec trois épreuves, le ski alpin, pilier du sport helvétique, stagne. Avec seulement 10 podiums en jeu — soit un de moins qu’à Pékin après la suppression du parallèle par équipes — il pèse désormais moins lourd que le ski acrobatique (15), le patinage de vitesse (14) ou le ski de fond (12).</p>",
+            "vizType": "datawrapper",
+            "vizProps": {
+                "chartId": "DGBYJ"
+            }
+        },
+        {
+            "content": "<h2>Mesurer la domination réelle: le score olympique</h2><p>Une médaille de bronze a-t-elle la même valeur qu’un titre olympique? Pour corriger les biais du classement traditionnel, <i>Le Temps</i> a converti les podiums en un «score olympique» pondéré: 4 points pour l’or, 2 pour l’argent et 1 pour le bronze.</p> <p>A ce jeu, la Suisse a atteint son apogée en 2022 à Pékin (38 points), surpassant de peu sa performance de Pyeongchang en 2018 (36 points).</p>",
             "vizType": "datawrapper",
             "vizProps": {
                 "chartId": "at5Zk"

@@ -59,9 +59,18 @@
 <div
 	bind:this={scrollContainer}
 	class="relative w-full bg-theme-bg grid grid-cols-1 grid-rows-1 {format === 'embed'
-		? 'h-full overflow-y-scroll scroll-smooth hide-scrollbar'
+		? 'h-full overflow-y-scroll scroll-smooth hide-scrollbar overscroll-contain snap-y snap-mandatory'
 		: ''}"
 >
+	{#if format === 'embed'}
+		<div class="fixed top-0 left-0 w-full h-1 z-50 pointer-events-none">
+			<div
+				class="h-full bg-theme-primary transition-all duration-300 ease-out"
+				style:width="{((activeStepIndex + 1) / steps.length) * 100}%"
+			></div>
+		</div>
+	{/if}
+
 	<!-- 
 		LAYER 1 : CHARTS (STICKY)
 		Colle en haut du conteneur grid.
@@ -108,7 +117,7 @@
 				data-index={i}
 				class="
 					flex items-center justify-center p-4
-					{format === 'embed' ? 'min-h-[150vh]' : 'min-h-screen md:justify-start md:pl-12'}
+					{format === 'embed' ? 'min-h-[150vh] snap-center' : 'min-h-screen md:justify-start md:pl-12'}
 				"
 			>
 				<div
@@ -135,6 +144,10 @@
 <style>
 	:global(.text-box) {
 		pointer-events: auto !important;
+	}
+
+	:global(.text-box p:not(:last-child)) {
+		margin-bottom: 1.25rem;
 	}
 
 	/* Ensure Grid takes full height in embed mode */
